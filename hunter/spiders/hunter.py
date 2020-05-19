@@ -6,6 +6,9 @@ class Hunter(CrawlSpider):
     name = 'hun73r'
     start_urls = ['https://www.sslproxies.org/']
 
+    def __init__(self, filepath):
+        self.filepath = filepath
+
     def parse(self, response):
         start_point = response.css('#list>div>.table-responsive'
                                    '>table>tbody')
@@ -16,5 +19,3 @@ class Hunter(CrawlSpider):
             spiderItem['port'] = tr.css('td:nth-child(2)::text').extract_first()
 
             yield spiderItem
-
-
